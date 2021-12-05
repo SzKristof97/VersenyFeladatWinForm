@@ -33,6 +33,7 @@ namespace VersenyFeladat2.Codes.Forms
             this.btnCancel = new VersenyFeladat2.Codes.Templates.ButtonTemplate();
             this.btnSave = new VersenyFeladat2.Codes.Templates.ButtonTemplate();
             this.cbSaveOptions = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -65,6 +66,7 @@ namespace VersenyFeladat2.Codes.Forms
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.Green;
+            this.btnSave.Enabled = false;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Impact", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -84,13 +86,23 @@ namespace VersenyFeladat2.Codes.Forms
             this.cbSaveOptions.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbSaveOptions.FormattingEnabled = true;
             this.cbSaveOptions.Items.AddRange(new object[] {
-            "Eredmény lista",
+            "Nevezett és indultak listája",
             "Nevezett, de nem indultak listája",
             "Nem nevezett indulók listája"});
-            this.cbSaveOptions.Location = new System.Drawing.Point(154, 175);
+            this.cbSaveOptions.Location = new System.Drawing.Point(189, 208);
             this.cbSaveOptions.Name = "cbSaveOptions";
             this.cbSaveOptions.Size = new System.Drawing.Size(229, 63);
             this.cbSaveOptions.TabIndex = 5;
+            this.cbSaveOptions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbSaveOptions_ItemCheck);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(82, 149);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(260, 38);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Kérem válassza ki a listából, \r\nhogy miket tartalmazzon az eredménylista:";
             // 
             // ResultForm
             // 
@@ -98,6 +110,7 @@ namespace VersenyFeladat2.Codes.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(555, 464);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbSaveOptions);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -108,6 +121,7 @@ namespace VersenyFeladat2.Codes.Forms
             this.Name = "ResultForm";
             this.Text = "ResultForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -117,5 +131,6 @@ namespace VersenyFeladat2.Codes.Forms
         private Templates.ButtonTemplate btnCancel;
         private Templates.ButtonTemplate btnSave;
         private System.Windows.Forms.CheckedListBox cbSaveOptions;
+        private System.Windows.Forms.Label label2;
     }
 }

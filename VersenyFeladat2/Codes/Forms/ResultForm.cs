@@ -137,5 +137,14 @@ namespace VersenyFeladat2.Codes.Forms
             //Then back to competition
             BackToCompetition();
         }
+
+        private void cbSaveOptions_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked) { btnSave.Enabled = true; }
+            if(e.NewValue == CheckState.Unchecked)
+            {
+                if (cbSaveOptions.CheckedItems.Count - 1 <= 0) { btnSave.Enabled = false; }
+            }
+        }
     }
 }
