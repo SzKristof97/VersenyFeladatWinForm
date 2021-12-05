@@ -31,6 +31,7 @@ namespace VersenyFeladat2.Codes.Forms
         }
         #endregion
 
+        #region Methods
         private void CompetitionForm_Shown(object sender, EventArgs e)
         {
             competitionTitle.Text = "Verseny #" + Id;
@@ -61,6 +62,15 @@ namespace VersenyFeladat2.Codes.Forms
                 card.Click += Competitor_Click;
                 competitorspanel.Controls.Add(card);
             }
+
+            if (Core.Competitions[Id]?.GetCompetitors().Count == 0)
+            {
+                btnSaveResults.Enabled = false;
+            }
+            else
+            {
+                btnSaveResults.Enabled = true;
+            }
         }
 
         private void Competitor_Click(object sender, System.EventArgs e)
@@ -79,11 +89,30 @@ namespace VersenyFeladat2.Codes.Forms
             competitorForm.Dock = DockStyle.Fill;
 
             Panel parentPanel = ((Panel)this.Parent);
+            parentPanel.Controls.Clear();
             parentPanel.Controls.Add(competitorForm);
             parentPanel.Tag = competitorForm;
 
             competitorForm.Show();
-            parentPanel.Controls[0].Dispose();
+            this.Dispose();
         }
+
+        private void btnSaveResults_Click(object sender, EventArgs e)
+        {
+            ResultForm rf = new ResultForm(Id, Core);
+            rf.TopLevel = false;
+            rf.Dock = DockStyle.Fill;
+
+            Panel parentPanel = ((Panel)this.Parent);
+            parentPanel.Controls.Clear();
+            parentPanel.Controls.Add(rf);
+            parentPanel.Tag = rf;
+
+            rf.Show();
+            this.Dispose();
+        }
+
+        #endregion
+
     }
 }

@@ -87,6 +87,75 @@ namespace VersenyFeladat2.Codes
         }
 
         /// <summary>
+        /// Collect every competitor who does the event 
+        /// </summary>
+        /// <returns></returns>
+        public List<Competitor> GetResultList()
+        {
+            List<Competitor> result = new List<Competitor>();
+
+            foreach (Competitor competitor in competitors)
+            {
+                if (competitor.Result != "ND" &&
+                    competitor.GetEvent().EventID != "ND" &&
+                    competitor.StartNumber != "ND")
+                {
+                    result.Add(competitor);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Collect every competitor who entered but not does the event
+        /// </summary>
+        /// <returns></returns>
+        public List<Competitor> GetEnteredButNotStarted()
+        {
+            List<Competitor> result = new List<Competitor>();
+            List<Competitor> mainResult = GetResultList();
+
+            foreach (Competitor competitor in competitors)
+            {
+                if (competitor.GetEvent().EventID != "ND" &&
+                    competitor.StartNumber != "ND")
+                {
+                    if (!mainResult.Contains(competitor))
+                    {
+                        result.Add(competitor);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Collect every competitor who entered but not does the event
+        /// </summary>
+        /// <returns></returns>
+        public List<Competitor> GetNotEnteredButStarted()
+        {
+            List<Competitor> result = new List<Competitor>();
+            List<Competitor> mainResult = GetResultList();
+
+            foreach (Competitor competitor in competitors)
+            {
+                if (competitor.GetEvent().EventID != "ND" &&
+                    competitor.Result != "ND")
+                {
+                    if (!mainResult.Contains(competitor))
+                    {
+                        result.Add(competitor);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Return with the whole list of competitors
         /// </summary>
         /// <returns>return with the whole list of competitorsc</returns>
@@ -179,9 +248,14 @@ namespace VersenyFeladat2.Codes
                 { // if it can parse the separatedata into a number it is a birth year
                     currentCompatetitor.SetBirthYear(birthyear);
 
-                    if (!string.IsNullOrEmpty(separateData[3]))
-                    { // if the separatedata[3] is not empty or null it is the startnumber
-                        currentCompatetitor.SetStartNumber(separateData[3]);
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(separateData[3]))
+                        { // if the separatedata[3] is not empty or null it is the startnumber
+                            currentCompatetitor.SetStartNumber(separateData[3]);
+                        }
+                    }catch(IndexOutOfRangeException)
+                    {//We dont need to handle this just catch the error and leave it
                     }
                 }
                 else{ // otherwise it is the name of the event

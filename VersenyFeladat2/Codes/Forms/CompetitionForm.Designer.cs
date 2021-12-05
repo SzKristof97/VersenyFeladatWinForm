@@ -33,6 +33,7 @@ namespace VersenyFeladat2.Codes.Forms
             this.btnremove = new VersenyFeladat2.Codes.Templates.ButtonTemplate();
             this.buttonTemplate1 = new VersenyFeladat2.Codes.Templates.ButtonTemplate();
             this.competitorspanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSaveResults = new VersenyFeladat2.Codes.Templates.ButtonTemplate();
             this.SuspendLayout();
             // 
             // competitionTitle
@@ -88,12 +89,29 @@ namespace VersenyFeladat2.Codes.Forms
             this.competitorspanel.TabIndex = 4;
             this.competitorspanel.WrapContents = false;
             // 
+            // btnSaveResults
+            // 
+            this.btnSaveResults.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSaveResults.FlatAppearance.BorderSize = 0;
+            this.btnSaveResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveResults.Font = new System.Drawing.Font("Impact", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnSaveResults.ForeColor = System.Drawing.Color.White;
+            this.btnSaveResults.Id = 0;
+            this.btnSaveResults.Location = new System.Drawing.Point(191, 422);
+            this.btnSaveResults.Name = "btnSaveResults";
+            this.btnSaveResults.Size = new System.Drawing.Size(170, 30);
+            this.btnSaveResults.TabIndex = 5;
+            this.btnSaveResults.Text = "Eredmények";
+            this.btnSaveResults.UseVisualStyleBackColor = false;
+            this.btnSaveResults.Click += new System.EventHandler(this.btnSaveResults_Click);
+            // 
             // CompetitionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(555, 464);
+            this.Controls.Add(this.btnSaveResults);
             this.Controls.Add(this.competitorspanel);
             this.Controls.Add(this.buttonTemplate1);
             this.Controls.Add(this.btnremove);
@@ -114,5 +132,6 @@ namespace VersenyFeladat2.Codes.Forms
         private Templates.ButtonTemplate btnremove;
         private Templates.ButtonTemplate buttonTemplate1;
         private System.Windows.Forms.FlowLayoutPanel competitorspanel;
+        private Templates.ButtonTemplate btnSaveResults;
     }
 }
